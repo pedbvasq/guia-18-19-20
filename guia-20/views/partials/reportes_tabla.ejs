@@ -1,0 +1,69 @@
+<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4">
+  <select class="form-select" aria-label="Productos" id="productoSelect">
+    <option selected>Seleccione un producto</option>
+    <% arrProductos.forEach(function(producto, index){ %>
+      console.log(index)
+    <option value="<%= producto.nombre %>"><%= producto.nombre %></option>
+    <% }); %>
+  </select>
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Reporte</h2>
+          </div>
+          <div class="col-sm-7">
+            <a href="#" class="btn btn-secondary"
+              ><i class="material-icons">&#xE147;</i>
+              <span>Add New User</span></a
+            >
+            <a href="#" class="btn btn-secondary"
+              ><i class="material-icons">&#xE24D;</i>
+              <span>Export to Excel</span></a
+            >
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover" id="reporteTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="display: none">Producto</th>
+            <th>Comprador</th>
+            <th>Fecha de Compra</th>
+            <th>Valor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Object.values(arrColeccion).forEach(function(producto, index){ %>
+          <tr>
+            <td><%= producto.id %></td>
+            <td style="display: none"><%= producto.productoNombre %></td>
+            <td>
+              <%= `${producto.comprador.nombre} ${producto.comprador.apellido}`
+              %>
+            </td>
+            <td><%= producto.fechaCompra %></td>
+            <td><%= producto.valor %></td>
+            <td>
+              <a
+                href="#"
+                class="settings"
+                title="Settings"
+                data-toggle="tooltip"
+                ><i class="material-icons">&#xE8B8;</i></a
+              >
+              <a href="#" class="delete" title="Delete" data-toggle="tooltip"
+                ><i class="material-icons">&#xE5C9;</i></a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<script src="/javascripts/reporte.js"></script>
